@@ -76,16 +76,16 @@
 						<td th:text="${book.author}" />
 						<td th:text="${book.editor}" />
 						<td th:text="${book.release}" />
-						<td th:if="${isGlobal}">
-							<form action="#" th:action="@{/add-collection}" th:object="${book}" method="post">
+						<td>
+							<form action="#" th:action="@{/edit-book}" th:object="${book}" method="post">
 								<input type="hidden" th:value="${book.id}" name="id" />
-								<button type="submit" class="btn btn-success">TODO REMOVE</button>
+								<button type="submit" class="btn btn-warning">EDIT</button>
 							</form>
 						</td>
-						<td th:if="!${isGlobal}">
+						<td>
 							<form action="#" th:action="@{/delete-book}" th:object="${book}" method="post">
 								<input type="hidden" th:value="${book.id}" name="id" />
-								<button type="submit" class="btn btn-danger">TODO REMOVE</button>
+								<button type="submit" class="btn btn-danger">DELETE</button>
 							</form>
 						</td>
 					</tr>

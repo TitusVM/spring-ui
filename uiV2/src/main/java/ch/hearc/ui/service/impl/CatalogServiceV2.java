@@ -32,7 +32,6 @@ public class CatalogServiceV2 implements CatalogService {
 		ResponseEntity<List<Book>> response = restTemplate.exchange(CATALOG_URL + "/books", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Book>>() {
 				});
-		System.out.println(response);
 		return response.getBody();
 	}
 

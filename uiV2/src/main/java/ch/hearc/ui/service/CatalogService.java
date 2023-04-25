@@ -4,7 +4,6 @@ import java.util.List;
 
 import ch.hearc.ui.model.Book;
 
-
 public interface CatalogService {
 
 	// Book
@@ -17,5 +16,4 @@ public interface CatalogService {
 	public void deleteBook(Long id);
 
 	public Book getBookById(Long id);
-
 }

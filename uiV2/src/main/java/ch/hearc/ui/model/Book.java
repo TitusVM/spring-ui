@@ -24,7 +24,4 @@ public class Book {
 	private String name;
 	private String editor;
 	private String release;
-	// This attribute will be gotten from the googlebooks Api
-	// https://www.googleapis.com/books/v1/volumes?q=intitle:"name"
-	private String description;
 }

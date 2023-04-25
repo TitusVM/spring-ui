@@ -42,17 +42,23 @@ public class HomeController {
 		model.addAttribute("showNew", Boolean.TRUE);
 		model.addAttribute("isNew", Boolean.TRUE);
 		model.addAttribute("isEdit", Boolean.FALSE);
-		return "showBook";
+		return "accueil";
+	}
+	
+	@PostMapping(value = { "/edit-book" })
+	public String showEditBook(@ModelAttribute Book book, BindingResult errors, Model model) {
+		model.addAttribute("showEdit", Boolean.TRUE);
+		model.addAttribute("isEdit", Boolean.TRUE);
+		model.addAttribute("book", catalogService.getBookById(book.getId()));
+		return "accueil";
 	}
 
 	@PostMapping(value = "/save-book")
-	public String saveBeer(@ModelAttribute Book book, BindingResult errors, Model model, @RequestParam String type) {
-
+	public String saveBook(@ModelAttribute Book book, BindingResult errors, Model model, @RequestParam String type) {
 		if (type.equals("new")) {
 			catalogService.createBook(book);
 		} else {
-			catalogService.deleteBook(book.getId());
-			catalogService.createBook(book);
+			catalogService.updateBook(book);
 		}
 
 		return "redirect:/show-books";
@@ -61,13 +67,7 @@ public class HomeController {
 	@PostMapping(value = "/delete-book")
 	public String removeFromCollection(@ModelAttribute Book book, BindingResult errors, Model model) {
 		model.addAttribute("isGlobal", Boolean.FALSE);
-
-		try {
-			catalogService.deleteBook(book.getId());
-		} catch (Exception e) {
-			return "redirect:/show-books";
-
-		}
-		return "redirect:/acceuil";
+		catalogService.deleteBook(book.getId());
+		return "redirect:/show-books";
 	}
 }
